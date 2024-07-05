@@ -1,21 +1,22 @@
-pipeline{
-  agent any
-  tools{
+pipeline {
+  agent any 
+  tools {
     maven 'Maven'
   }
-  stages{
-    stage("initilize build"){
-      steps{
+  stages {
+    stage ('Initialize') {
+      steps {
         sh '''
-        echo "PATH=$PATH"
-        echo "MAVEN=$MAVEN"
-        '''
-      }
-      stage("Build"){
-        steps{
-          sh 'mvn clean package'
-        }
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+            ''' 
       }
     }
+    stage ('Build') {
+      steps {
+      sh 'mvn clean package'
+       }
+    }
+            
   }
 }
